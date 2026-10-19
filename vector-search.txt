@@ -1,0 +1,23 @@
+Vector Search and Cosine Similarity
+
+Vector search finds relevant text by comparing numeric vectors instead of
+matching keywords. Each chunk of text is converted to an embedding vector,
+and the query is converted with the same method. Relevance is then the
+geometric closeness of the vectors.
+
+Cosine similarity is the most common closeness measure. It computes the
+cosine of the angle between two vectors and ranges from -1 to 1. A value
+near 1 means the vectors point in almost the same direction, which we read
+as high semantic similarity. Before comparing, vectors are usually
+normalized to unit length so that document length does not dominate the
+score.
+
+TF-IDF is a simple sparse embedding method. It represents each chunk by
+how often each term appears, down-weighting terms that appear in many
+chunks. It needs no training and runs fully offline, which makes it great
+for learning. Dense embeddings from neural models capture meaning better,
+especially paraphrases, but require a pretrained model.
+
+Top-k retrieval returns the k highest-scoring chunks. Small k keeps the
+prompt focused, large k adds context but risks noise. Values of 3 to 5 are
+typical starting points.

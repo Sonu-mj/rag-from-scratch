@@ -1,0 +1,19 @@
+Chunking Strategies for RAG
+
+Chunking decides how documents are sliced before embedding, and it has a
+big effect on retrieval quality. The simplest approach is fixed-size
+chunking: cut the text every N characters with some overlap. It is easy to
+implement but can split sentences in awkward places.
+
+A better approach is sentence-aware chunking: still target roughly N
+characters, but move the cut point to the nearest sentence boundary. This
+keeps each chunk readable and self-contained, which helps both the
+embedding model and the final answer.
+
+Overlap matters too. With zero overlap, an idea that straddles a boundary
+may be split across two chunks and match neither well. An overlap of 10 to
+20 percent of the chunk size is a common starting point.
+
+For structured documents, consider semantic chunking: split on headings or
+paragraphs instead of character counts. Tables and code blocks should
+usually be kept whole, since splitting them destroys their meaning.
